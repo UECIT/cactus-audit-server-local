@@ -2,23 +2,20 @@ package uk.nhs.cdss.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import uk.nhs.cdss.audit.model.AuditSession;
 import uk.nhs.cdss.repos.AuditRepository;
 import uk.nhs.cdss.transformers.AuditEntityTransformer;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class AuditService {
 
-  @Qualifier("enhanced")
   private final ObjectMapper mapper;
   private final AuditRepository auditRepository;
   private final AuditEntityTransformer transformer;

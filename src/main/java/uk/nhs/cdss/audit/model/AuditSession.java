@@ -1,14 +1,19 @@
 package uk.nhs.cdss.audit.model;
 
-import lombok.*;
-import lombok.experimental.FieldDefaults;
-
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.Singular;
+import lombok.experimental.FieldDefaults;
 
 /**
- * Represents a call to this server containing calls to other servers
+ * Represents an incoming call to a particular server
+ * containing outgoing calls from that server throughout the duration of that incoming call.
  */
 @Data
 @NoArgsConstructor

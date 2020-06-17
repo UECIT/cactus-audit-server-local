@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import uk.nhs.cdss.audit.model.AuditSession;
 import uk.nhs.cdss.entities.AuditEntity;
@@ -16,7 +15,6 @@ public class AuditEntityTransformer {
     private static final String SUPPLIER_ID = "supplierId";
     private static final String CASE_ID = "caseId";
 
-    @Qualifier("enhanced")
     private final ObjectMapper mapper;
 
     public AuditEntity toEntity(AuditSession audit, String sendingService) throws JsonProcessingException {

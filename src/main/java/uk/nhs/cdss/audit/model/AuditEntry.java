@@ -1,12 +1,15 @@
 package uk.nhs.cdss.audit.model;
 
-import lombok.*;
+import java.time.Instant;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-import java.time.Instant;
-
 /**
- * Represents calls made by this web service's FHIR client during an audit session
+ * Represents outgoing calls made by a web service during an audit session
  */
 @Data
 @NoArgsConstructor
