@@ -12,7 +12,7 @@ FROM openjdk:11-jre-slim
 WORKDIR /app
 VOLUME /tmp
 COPY start-audit-server.sh /app
-RUN chmod +x start-fhir.sh
+RUN chmod +x start-audit-server.sh
 ENTRYPOINT [ "/app/start-audit-server.sh" ]
 EXPOSE 8089
 
