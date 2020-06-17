@@ -16,8 +16,6 @@
     <java.version>11</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-    <cactus-common.version>0.0.4</cactus-common.version>
   </properties>
 
   <repositories>
@@ -45,12 +43,6 @@
   </repositories>
 
   <dependencies>
-    <dependency>
-      <groupId>uk.nhs.cactus</groupId>
-      <artifactId>common</artifactId>
-      <version>${cactus-common.version}</version>
-    </dependency>
-
     <!-- Spring Dependencies -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
