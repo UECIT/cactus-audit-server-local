@@ -1,13 +1,5 @@
 package uk.nhs.cdss.controllers;
 
-import static com.shazam.shazamcrest.matcher.Matchers.sameBeanAs;
-import static org.hamcrest.Matchers.hasItem;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertThat;
-
-import java.time.Instant;
-import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +8,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 import uk.nhs.cdss.audit.model.AuditSession;
 import uk.nhs.cdss.entities.AuditEntity;
 import uk.nhs.cdss.repos.AuditRepository;
+
+import java.time.Instant;
+import java.util.List;
+
+import static com.shazam.shazamcrest.matcher.Matchers.sameBeanAs;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.nullValue;
+import static org.junit.Assert.assertThat;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -77,8 +77,6 @@ public class ElasticsearchControllerComponentTest {
 
     var audits = elasticsearchController.findAllByCaseId("validCaseId1");
 
-    assertThat(audits, hasSize(1));
-    assertThat(audits, hasItem(
-        sameBeanAs(expectedAudit).with("entries", nullValue())));
+    assertThat(audits, contains(sameBeanAs(expectedAudit).with("entries", nullValue())));
   }
 }
