@@ -2,6 +2,7 @@ package uk.nhs.cdss.transformers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Preconditions;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,9 @@ public class AuditEntityTransformer {
     private final ObjectMapper mapper;
 
     public AuditEntity toEntity(AuditSession audit, String sendingService) throws JsonProcessingException {
+        Preconditions.checkNotNull(audit);
+        Preconditions.checkNotNull(sendingService);
+
         return AuditEntity.builder()
                 .serialisedAudit(mapper.writeValueAsString(audit))
                 .service(sendingService)
@@ -31,6 +35,8 @@ public class AuditEntityTransformer {
     // also, having the exceptions compile-time checked hinders using this for higher-order functions
     @SneakyThrows
     public AuditSession fromEntity(AuditEntity entity) {
+        Preconditions.checkNotNull(entity.getSerialisedAudit());
+
         return mapper.readValue(entity.getSerialisedAudit(), AuditSession.class);
     }
 }

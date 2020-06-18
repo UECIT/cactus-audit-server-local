@@ -2,6 +2,7 @@ package uk.nhs.cdss.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Preconditions;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -21,12 +22,15 @@ public class AuditService {
   private final AuditEntityTransformer transformer;
 
   public void addAudit(AuditSession audit, String sendingService) throws JsonProcessingException {
+    Preconditions.checkNotNull(audit);
+    Preconditions.checkNotNull(sendingService);
     log.info(mapper.writeValueAsString(audit));
 
     auditRepository.saveAndFlush(transformer.toEntity(audit, sendingService));
   }
 
   public List<AuditSession> getAllByCaseId(String caseId) {
+    Preconditions.checkNotNull(caseId);
     log.info("Retrieving all audits for `caseId`: " + caseId);
 
     return auditRepository.findAllByCaseId(caseId)
